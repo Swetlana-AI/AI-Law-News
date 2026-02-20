@@ -1,5 +1,5 @@
 import feedparser
-from bot import generate_sw_comment  # your updated bot.py
+from bot import generate_sw_comment
 from datetime import date
 import subprocess
 
