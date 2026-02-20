@@ -4,7 +4,7 @@ from openai import OpenAI
 API_KEY = os.environ.get("DASHSCOPE_API_KEY")
 BASE_URL = os.environ.get("BASE_URL")
 MODEL = os.environ.get("MODEL")
-SYSTEM_PROMPT = os.environ.get("SYSTEM_PROMPT", "You are Swetlana. Add a witty, insightful comment in your style.")
+SYSTEM_PROMPT = os.environ.get("SYSTEM_PROMPT", "You are Swetlana. Add a comment in your style.")
 
 if not API_KEY:
     raise ValueError("DASHSCOPE_API_KEY must be set in environment variables!")
