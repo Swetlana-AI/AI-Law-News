@@ -1,4 +1,4 @@
-httpx>=1.0.0
+httpx==0.28.1
 openai>=1.0.0
 python-dotenv>=1.0.0
 feedparser>=6.0.10
