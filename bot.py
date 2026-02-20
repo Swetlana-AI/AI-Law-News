@@ -1,15 +1,15 @@
 import os
 from openai import OpenAI
-import os
 
-# === Load secrets from GitHub Actions environment ===
-client = OpenAI(
-    api_key=os.environ["DASHSCOPE_API_KEY"],
-    base_url=os.environ.get("BASE_URL")  # optional if using default
-)
+API_KEY = os.environ.get("DASHSCOPE_API_KEY")
+BASE_URL = os.environ.get("BASE_URL")
+MODEL = os.environ.get("MODEL")
+SYSTEM_PROMPT = os.environ.get("SYSTEM_PROMPT", "You are Swetlana. Add a witty, insightful comment in your style.")
 
-MODEL = os.environ["MODEL"]
-SYSTEM_PROMPT = os.environ["SYSTEM_PROMPT"]
+if not API_KEY:
+    raise ValueError("DASHSCOPE_API_KEY must be set in environment variables!")
+
+client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 # === Load knowledge base ===
 def load_docs(knowledge_folder="knowledge"):
