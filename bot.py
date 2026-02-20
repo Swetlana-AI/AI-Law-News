@@ -55,11 +55,3 @@ Please produce a **concise, reflective, insightful commentary** in Swetlana's st
     )
 
     return resp.choices[0].message.content.strip()
-
-
-# === Optional: local testing ===
-if __name__ == "__main__":
-    test_title = "Dario Amodei joins OpenAI"
-    test_summary = "Former Anthropic co-founder moves to OpenAI to lead AI safety projects."
-    test_url = "https://news.example.com/dario-amodei"
-    print(generate_sw_comment(test_title, test_summary, test_url))
