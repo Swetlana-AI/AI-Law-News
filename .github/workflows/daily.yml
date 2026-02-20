@@ -1,12 +1,13 @@
-name: Daily Swetlana Comments
+name: Run Swetlana AI-Law-News Bot
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # 9am UTC every day
-  workflow_dispatch:      # allows manual trigger
+    # every day at 9am UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch: # allows manual trigger
 
 jobs:
-  post-daily-comment:
+  run-bot:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,22 +20,10 @@ jobs:
           python-version: 3.11
 
       - name: Install dependencies
-        run: pip install openai feedparser python-dotenv
+        run: pip install -r requirements.txt
 
-      - name: Run Swetlana Bot
-        run: python generate_markdown.py
+      - name: Run generate_markdown
         env:
-          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
-          MODEL: ${{ secrets.MODEL }}
+          API_KEY: ${{ secrets.API_KEY }}
           BASE_URL: ${{ secrets.BASE_URL }}
-          SYSTEM_PROMPT: ${{ secrets.SYSTEM_PROMPT }}
-
-      - name: Commit generated news.md
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add news.md
-          git commit -m "Daily Swetlana Comments update" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python generate_markdown.py
